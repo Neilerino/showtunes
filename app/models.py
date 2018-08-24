@@ -1,4 +1,5 @@
 from app import db
+from datetime import datetime
 
 class User(db.Model):
 	id = db.Column(db.Integer, primary_key=True)
@@ -34,3 +35,12 @@ class Sheet(db.Model):
 	id = db.Column(db.Integer, primary_key=True)
 	path = db.Column(db.String(128), unique=True)
 	song_id = db.Column(db.Integer, db.ForeignKey('song.id')) 
+
+
+class Session(db.Model):
+	id = db.Column(db.Integer, primary_key=True)
+	date = db.Column(db.DateTime, index=True, default=datetime.utcnow)
+	start_time = db.Column(db.DateTime, default=datetime.utcnow)
+	end_time = db.Column(db.DateTime)
+	practice_time = db.Column(db.DateTime, index=True)
+	song_id = db.Column(db.Integer, db.ForeignKey('song.id'))
