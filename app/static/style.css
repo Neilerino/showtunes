@@ -3,6 +3,9 @@ body{
 	background-color: #021424;
 
 }
+.body-text{
+	color: white;
+}
 
 .sidebar{
 	margin: 0;

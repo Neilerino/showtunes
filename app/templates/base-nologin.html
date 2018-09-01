@@ -5,13 +5,6 @@
 	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
-	<!-- sidebar -->
-	<div class="sidebar" style="padding-top: 50px;">
-		<a class="active" href="#">New Set</a>
-		<a href="#">News</a>
-		<a href="#">Contact</a>
-		<a href="#">About</a>
-	</div>
 	<nav class="navbar navbar-inverse">
 	  <div class="container-fluid">
 	    <div class="navbar-header">
@@ -23,12 +16,22 @@
 	      <li><a href="#">Page 2</a></li>
 	    </ul>
 	    <ul class="nav navbar-nav navbar-right">
-	      <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+	   		{% if current_user.is_authenticated %}
+	      <li><a href="/user"><span class="glyphicon glyphicon-user"></span> {{ current_user.username }}</a></li>
+	      <li><a href="/logout"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+	      	{% else %}
+	      <li><a href="/register"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
 	      <li><a href="/login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+	      	{% endif %}
 	    </ul>
 	  </div>
 	</nav>
 </body>
+
+<script
+  src="https://code.jquery.com/jquery-3.3.1.js"
+  integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+  crossorigin="anonymous"></script>
 
 {% block mycontent %}{% endblock %}
 
